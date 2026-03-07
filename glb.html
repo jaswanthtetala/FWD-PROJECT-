@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Exam System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            width: 400px;
+            margin: 80px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 15px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Online Exam System</h2>
+
+        <form>
+            <label>Username</label>
+            <input type="text" placeholder="Enter username" required>
+
+            <label>Password</label>
+            <input type="password" placeholder="Enter password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="footer">
+            © 2026 Online Exam System
+        </div>
+    </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Exam with Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+        }
+        .exam-container {
+            width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        #timer {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        button {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 30px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #result {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        let timeLeft = 60; // time in seconds
+
+        function startTimer() {
+            let timer = setInterval(function () {
+                document.getElementById("timer").innerHTML =
+                    "Time Left: " + timeLeft + " seconds";
+
+                timeLeft--;
+
+                if (timeLeft < 0) {
+                    clearInterval(timer);
+                    calculateScore();
+                    alert("Time is up! Exam submitted automatically.");
+                }
+            }, 1000);
+        }
+
+        function calculateScore() {
+            let score = 0;
+
+            if (document.querySelector('input[name="q1"]:checked')?.value === "b")
+                score++;
+            if (document.querySelector('input[name="q2"]:checked')?.value === "b")
+                score++;
+            if (document.querySelector('input[name="q3"]:checked')?.value === "d")
+                score++;
+
+            document.getElementById("result").innerHTML =
+                "Your Score: " + score + " / 3";
+        }
+    </script>
+</head>
+
+<body onload="startTimer()">
+
+<div class="exam-container">
+    <h2>Online Examination</h2>
+    <div id="timer"></div>
+
+    <form onsubmit="event.preventDefault(); calculateScore();">
+
+        <div class="question">
+            <p>1. What is the size of int in Java?</p>
+            <label><input type="radio" name="q1" value="a"> 2 bytes</label><br>
+            <label><input type="radio" name="q1" value="b"> 4 bytes</label><br>
+            <label><input type="radio" name="q1" value="c"> 8 bytes</label><br>
+            <label><input type="radio" name="q1" value="d"> Depends on OS</label>
+        </div>
+
+        <div class="question">
+            <p>2. Which keyword is used for inheritance in Java?</p>
+            <label><input type="radio" name="q2" value="a"> implement</label><br>
+            <label><input type="radio" name="q2" value="b"> extends</label><br>
+            <label><input type="radio" name="q2" value="c"> inherits</label><br>
+            <label><input type="radio" name="q2" value="d"> interface</label>
+        </div>
+
+        <div class="question">
+            <p>3. Java is a ___ language.</p>
+            <label><input type="radio" name="q3" value="a"> Low-level</label><br>
+            <label><input type="radio" name="q3" value="b"> Machine</label><br>
+            <label><input type="radio" name="q3" value="c"> Assembly</label><br>
+            <label><input type="radio" name="q3" value="d"> High-level</label>
+        </div>
+
+        <button type="submit">Submit Exam</button>
+    </form>
+
+    <div id="result"></div>
+</div>
+
+</body>
+</html>
