@@ -1,197 +1,484 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Online Exam System</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
-        .container {
-            width: 400px;
-            margin: 80px auto;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 8px;
-            margin: 8px 0 15px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-            color: gray;
-        }
-    </style>
+<title>Smart Secure Online Examination Platform</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#f4f4f4;
+}
+
+.page{
+display:none;
+padding:20px;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+cursor:pointer;
+}
+
+input,select{
+padding:8px;
+margin:5px;
+}
+
+.questionBox{
+background:white;
+padding:15px;
+margin:10px;
+border-radius:8px;
+}
+
+#timer{
+font-size:22px;
+color:red;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+}
+
+td,th{
+border:1px solid black;
+padding:8px;
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h2>Online Exam System</h2>
+<!-- LOGIN PAGE -->
 
-        <form>
-            <label>Username</label>
-            <input type="text" placeholder="Enter username" required>
+<div id="loginPage" class="page" style="display:block">
 
-            <label>Password</label>
-            <input type="password" placeholder="Enter password" required>
+<h2>Smart Secure Online Examination Platform</h2>
 
-            <button type="submit">Login</button>
-        </form>
+<select id="role">
+<option value="">Select Login Type</option>
+<option value="student">Student</option>
+<option value="admin">Admin</option>
+</select>
 
-        <div class="footer">
-            © 2026 Online Exam System
-        </div>
-    </div>
+<br>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Online Exam with Timer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #eef2f3;
-        }
-        .exam-container {
-            width: 700px;
-            margin: 40px auto;
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        #timer {
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            color: red;
-            margin-bottom: 20px;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        button {
-            display: block;
-            margin: 30px auto;
-            padding: 10px 30px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        #result {
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-    </style>
+<input id="username" placeholder="Enter Name">
 
-    <script>
-        let timeLeft = 60; // time in seconds
+<br>
 
-        function startTimer() {
-            let timer = setInterval(function () {
-                document.getElementById("timer").innerHTML =
-                    "Time Left: " + timeLeft + " seconds";
+<button onclick="login()">Login</button>
 
-                timeLeft--;
-
-                if (timeLeft < 0) {
-                    clearInterval(timer);
-                    calculateScore();
-                    alert("Time is up! Exam submitted automatically.");
-                }
-            }, 1000);
-        }
-
-        function calculateScore() {
-            let score = 0;
-
-            if (document.querySelector('input[name="q1"]:checked')?.value === "b")
-                score++;
-            if (document.querySelector('input[name="q2"]:checked')?.value === "b")
-                score++;
-            if (document.querySelector('input[name="q3"]:checked')?.value === "d")
-                score++;
-
-            document.getElementById("result").innerHTML =
-                "Your Score: " + score + " / 3";
-        }
-    </script>
-</head>
-
-<body onload="startTimer()">
-
-<div class="exam-container">
-    <h2>Online Examination</h2>
-    <div id="timer"></div>
-
-    <form onsubmit="event.preventDefault(); calculateScore();">
-
-        <div class="question">
-            <p>1. What is the size of int in Java?</p>
-            <label><input type="radio" name="q1" value="a"> 2 bytes</label><br>
-            <label><input type="radio" name="q1" value="b"> 4 bytes</label><br>
-            <label><input type="radio" name="q1" value="c"> 8 bytes</label><br>
-            <label><input type="radio" name="q1" value="d"> Depends on OS</label>
-        </div>
-
-        <div class="question">
-            <p>2. Which keyword is used for inheritance in Java?</p>
-            <label><input type="radio" name="q2" value="a"> implement</label><br>
-            <label><input type="radio" name="q2" value="b"> extends</label><br>
-            <label><input type="radio" name="q2" value="c"> inherits</label><br>
-            <label><input type="radio" name="q2" value="d"> interface</label>
-        </div>
-
-        <div class="question">
-            <p>3. Java is a ___ language.</p>
-            <label><input type="radio" name="q3" value="a"> Low-level</label><br>
-            <label><input type="radio" name="q3" value="b"> Machine</label><br>
-            <label><input type="radio" name="q3" value="c"> Assembly</label><br>
-            <label><input type="radio" name="q3" value="d"> High-level</label>
-        </div>
-
-        <button type="submit">Submit Exam</button>
-    </form>
-
-    <div id="result"></div>
 </div>
+
+
+<!-- ADMIN DASHBOARD -->
+
+<div id="adminDashboard" class="page">
+
+<h2>Admin Dashboard</h2>
+
+<button onclick="showPage('addQuestionPage')">Add Question</button>
+
+<button onclick="showPage('viewQuestionPage');loadQuestions()">View Questions</button>
+
+<button onclick="showPage('timerPage')">Set Exam Timer</button>
+
+<button onclick="showPage('resultPage');loadResults()">View Student Results</button>
+
+</div>
+
+
+<!-- ADD QUESTION PAGE -->
+
+<div id="addQuestionPage" class="page">
+
+<h2>Add Question</h2>
+
+<input id="q" placeholder="Question">
+
+<br>
+
+<input id="o1" placeholder="Option 1">
+<input id="o2" placeholder="Option 2">
+
+<br>
+
+<input id="o3" placeholder="Option 3">
+<input id="o4" placeholder="Option 4">
+
+<br>
+
+<input id="ans" placeholder="Correct Option (1-4)">
+
+<br>
+
+<button onclick="addQuestion()">Add Question</button>
+
+<br>
+
+<button onclick="showPage('adminDashboard')">Back</button>
+
+</div>
+
+
+<!-- VIEW QUESTIONS -->
+
+<div id="viewQuestionPage" class="page">
+
+<h2>All Questions</h2>
+
+<div id="questionList"></div>
+
+<button onclick="showPage('adminDashboard')">Back</button>
+
+</div>
+
+
+<!-- TIMER SETTING -->
+
+<div id="timerPage" class="page">
+
+<h2>Set Exam Timer (minutes)</h2>
+
+<input id="examTimer" placeholder="Enter Minutes">
+
+<br>
+
+<button onclick="saveTimer()">Save Timer</button>
+
+<br>
+
+<button onclick="showPage('adminDashboard')">Back</button>
+
+</div>
+
+
+<!-- INSTRUCTIONS PAGE -->
+
+<div id="instructionPage" class="page">
+
+<h2>Exam Instructions</h2>
+
+<p>Total Questions: <span id="totalQ"></span></p>
+
+<p>Exam Time: <span id="timeShow"></span> minutes</p>
+
+<p>Do not refresh the page during the exam.</p>
+
+<button onclick="startExam()">Start Exam</button>
+
+</div>
+
+
+<!-- EXAM PAGE -->
+
+<div id="examPage" class="page">
+
+<h2>Exam</h2>
+
+<div id="timer"></div>
+
+<div id="questions"></div>
+
+<button onclick="finishAttempt()">Finish Attempt</button>
+
+</div>
+
+
+<!-- CONFIRM PAGE -->
+
+<div id="confirmPage" class="page">
+
+<h2>Confirm Submission</h2>
+
+<p>Are you sure you want to submit?</p>
+
+<button onclick="submitExam()">Yes Submit</button>
+
+</div>
+
+
+<!-- RESULT PAGE -->
+
+<div id="scorePage" class="page">
+
+<h2>Your Score</h2>
+
+<h3 id="score"></h3>
+
+<button onclick="location.reload()">Exit</button>
+
+</div>
+
+
+<!-- ADMIN RESULT VIEW -->
+
+<div id="resultPage" class="page">
+
+<h2>Student Results</h2>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Score</th>
+</tr>
+
+<tbody id="resultTable"></tbody>
+
+</table>
+
+<br>
+
+<button onclick="showPage('adminDashboard')">Back</button>
+
+</div>
+
+
+
+<script>
+
+let studentName=""
+let timer
+let timeLeft
+
+function showPage(id){
+
+document.querySelectorAll(".page").forEach(p=>p.style.display="none")
+document.getElementById(id).style.display="block"
+
+}
+
+function login(){
+
+let role=document.getElementById("role").value
+let name=document.getElementById("username").value
+
+if(role==""||name==""){
+alert("Enter details")
+return
+}
+
+studentName=name
+
+if(role=="admin"){
+showPage("adminDashboard")
+}
+else{
+
+let q=JSON.parse(localStorage.getItem("questions"))||[]
+let t=localStorage.getItem("timer")||1
+
+document.getElementById("totalQ").innerText=q.length
+document.getElementById("timeShow").innerText=t
+
+showPage("instructionPage")
+
+}
+
+}
+
+
+
+function addQuestion(){
+
+let q=document.getElementById("q").value
+
+let o1=document.getElementById("o1").value
+let o2=document.getElementById("o2").value
+let o3=document.getElementById("o3").value
+let o4=document.getElementById("o4").value
+
+let ans=document.getElementById("ans").value
+
+let questions=JSON.parse(localStorage.getItem("questions"))||[]
+
+questions.push({q,o1,o2,o3,o4,ans})
+
+localStorage.setItem("questions",JSON.stringify(questions))
+
+alert("Question Added")
+
+}
+
+
+
+function loadQuestions(){
+
+let questions=JSON.parse(localStorage.getItem("questions"))||[]
+
+let html=""
+
+questions.forEach((q,i)=>{
+
+html+=`
+<div class="questionBox">
+
+<b>${i+1}. ${q.q}</b><br>
+
+${q.o1}<br>
+${q.o2}<br>
+${q.o3}<br>
+${q.o4}<br>
+
+<button onclick="deleteQ(${i})">Delete</button>
+
+</div>
+`
+
+})
+
+document.getElementById("questionList").innerHTML=html
+
+}
+
+
+
+function deleteQ(i){
+
+let questions=JSON.parse(localStorage.getItem("questions"))||[]
+
+questions.splice(i,1)
+
+localStorage.setItem("questions",JSON.stringify(questions))
+
+loadQuestions()
+
+}
+
+
+
+function saveTimer(){
+
+let t=document.getElementById("examTimer").value
+
+localStorage.setItem("timer",t)
+
+alert("Timer Saved")
+
+}
+
+
+
+function startExam(){
+
+showPage("examPage")
+
+let questions=JSON.parse(localStorage.getItem("questions"))||[]
+
+let html=""
+
+questions.forEach((q,i)=>{
+
+html+=`
+<div class="questionBox">
+
+<p>${i+1}. ${q.q}</p>
+
+<label><input type="radio" name="q${i}" value="1"> ${q.o1}</label><br>
+<label><input type="radio" name="q${i}" value="2"> ${q.o2}</label><br>
+<label><input type="radio" name="q${i}" value="3"> ${q.o3}</label><br>
+<label><input type="radio" name="q${i}" value="4"> ${q.o4}</label>
+
+</div>
+`
+
+})
+
+document.getElementById("questions").innerHTML=html
+
+let t=localStorage.getItem("timer")||1
+
+timeLeft=t*60
+
+timer=setInterval(updateTimer,1000)
+
+}
+
+
+
+function updateTimer(){
+
+let m=Math.floor(timeLeft/60)
+let s=timeLeft%60
+
+document.getElementById("timer").innerText=`Time Left: ${m}:${s}`
+
+timeLeft--
+
+if(timeLeft<0){
+
+clearInterval(timer)
+
+submitExam()
+
+}
+
+}
+
+
+
+function finishAttempt(){
+
+clearInterval(timer)
+
+showPage("confirmPage")
+
+}
+
+
+
+function submitExam(){
+
+let questions=JSON.parse(localStorage.getItem("questions"))||[]
+
+let score=0
+
+questions.forEach((q,i)=>{
+
+let ans=document.querySelector(`input[name="q${i}"]:checked`)
+
+if(ans && ans.value==q.ans) score++
+
+})
+
+let results=JSON.parse(localStorage.getItem("results"))||[]
+
+results.push({name:studentName,score:score})
+
+localStorage.setItem("results",JSON.stringify(results))
+
+document.getElementById("score").innerText=score+" / "+questions.length
+
+showPage("scorePage")
+
+}
+
+
+
+function loadResults(){
+
+let results=JSON.parse(localStorage.getItem("results"))||[]
+
+let html=""
+
+results.forEach(r=>{
+
+html+=`<tr><td>${r.name}</td><td>${r.score}</td></tr>`
+
+})
+
+document.getElementById("resultTable").innerHTML=html
+
+}
+
+</script>
 
 </body>
 </html>
